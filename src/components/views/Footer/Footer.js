@@ -1,7 +1,11 @@
-import styles from './Footer.module.scss';
+import { Container } from 'react-bootstrap';
 
 const Footer = () => {
-  return <h2>Footer</h2>;
+  return (
+    <Container className='text-center text-muted my-4'>
+      Copyright © BlogApp 2022
+    </Container>
+  );
 };
 
 export default Footer;
