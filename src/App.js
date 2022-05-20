@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <main>
-      Hello World!
+      <h1>Hello World!</h1>
       <Routes>
         <Route path='/' element={'<Home />'} />
         <Route path='/post/:id' element={'<Post />'} />
