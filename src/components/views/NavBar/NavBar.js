@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <Navbar bg='primary' variant='dark' expand='lg' className='my-4'>
+    <Navbar bg='primary' variant='dark' expand='lg' className='rounded my-4'>
       <Container>
         <Navbar.Brand href='/'>Blog.app</Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
