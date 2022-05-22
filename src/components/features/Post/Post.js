@@ -1,4 +1,5 @@
 import { Col, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Post = (props) => {
   return (
@@ -17,7 +18,9 @@ const Post = (props) => {
               {props.shortDescription}
             </span>
           </Card.Text>
-          <Button variant='primary'>Read more</Button>
+          <Link to={`post/${props.id}`}>
+            <Button variant='primary'>Read more</Button>
+          </Link>
         </Card.Body>
       </Card>
     </Col>
