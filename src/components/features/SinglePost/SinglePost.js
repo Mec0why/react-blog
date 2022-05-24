@@ -2,7 +2,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 import { getPostById } from '../../../redux/postsRedux';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 const SinglePost = () => {
   const { id } = useParams();
@@ -16,9 +16,11 @@ const SinglePost = () => {
           <h1 className='m-0'>{postData.title}</h1>
         </div>
         <div className='mt-3 mt-md-0 col-md-4 d-flex justify-content-end align-items-start'>
-          <Button className='m-2' variant='outline-info'>
-            Edit
-          </Button>
+          <Link to={`/post/edit/${id}`}>
+            <Button className='m-2' variant='outline-info'>
+              Edit
+            </Button>
+          </Link>
           <Button className='my-2 mw-2' variant='outline-danger'>
             Delete
           </Button>

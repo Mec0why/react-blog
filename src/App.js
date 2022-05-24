@@ -4,6 +4,7 @@ import Header from './components/views/Header/Header';
 import Footer from './components/views/Footer/Footer';
 import Home from './components/views/Home/Home';
 import SinglePost from './components/features/SinglePost/SinglePost';
+import EditPost from './components/features/EditPost/EditPost';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/post/:id' element={<SinglePost />} />
           <Route path='/post/add' element={'<PostAdd />'} />
-          <Route path='/post/edit/:id' element={'PostEdit />'} />
+          <Route path='/post/edit/:id' element={<EditPost />} />
           <Route path='/about' element={'<About />'} />
           <Route path='*' element={'<NotFound />'} />
         </Routes>
