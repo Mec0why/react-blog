@@ -1,3 +1,5 @@
+import shortid from 'shortid';
+
 //selectors
 export const getAllPosts = (state) => state.posts;
 export const getPostById = ({ posts }, postId) =>
@@ -9,6 +11,7 @@ const ADD_POST = createActionName('ADD_POST');
 const REMOVE_POST = createActionName('REMOVE_POST');
 
 export const removePost = (payload) => ({ type: REMOVE_POST, payload });
+export const addPost = (payload) => ({ type: ADD_POST, payload });
 
 // action creators
 const postsReducer = (statePart = [], action) => {
@@ -17,6 +20,8 @@ const postsReducer = (statePart = [], action) => {
       return statePart.filter((post) =>
         post.id === action.payload ? false : true
       );
+    case ADD_POST:
+      return [...statePart, { ...action.payload, id: shortid() }];
     default:
       return statePart;
   }
