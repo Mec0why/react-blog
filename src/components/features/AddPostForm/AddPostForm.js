@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import PostForm from '../PostForm/PostForm';
 
 const AddPostForm = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,12 +17,7 @@ const AddPostForm = () => {
     navigate('/');
   };
 
-  return (
-    <PostForm
-      action={AddPost}
-      actionText={'Add Post'}
-    />
-  );
+  return <PostForm action={AddPost} actionText={'Add Post'} />;
 };
 
 export default AddPostForm;
