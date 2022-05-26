@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { getPostById } from '../../../redux/postsRedux';
-import {} from '../../../redux/postsRedux';
-import { useNavigate } from 'react-router-dom';
+import { editPost } from '../../../redux/postsRedux';
+import { useNavigate, Navigate } from 'react-router-dom';
 import PostForm from '../PostForm/PostForm';
 
 const EditPostForm = () => {
@@ -13,15 +13,12 @@ const EditPostForm = () => {
   const navigate = useNavigate();
 
   const EditPost = (post) => {
-    dispatch();
-    // addPost({
-    //   ...post,
-    // })
-
+    dispatch(editPost({ ...post, id: postId }));
     navigate('/');
   };
 
-  return <PostForm action={EditPost} actionText={'Add Post'} {...postData} />;
+  if (!postData) return <Navigate to='/' />;
+  return <PostForm action={EditPost} actionText={'Edit Post'} {...postData} />;
 };
 
 export default EditPostForm;

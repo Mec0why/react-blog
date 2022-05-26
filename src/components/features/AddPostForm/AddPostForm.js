@@ -8,12 +8,7 @@ const AddPostForm = () => {
   const navigate = useNavigate();
 
   const AddPost = (post) => {
-    dispatch(
-      addPost({
-        ...post,
-      })
-    );
-
+    dispatch(addPost({ ...post }));
     navigate('/');
   };
 
