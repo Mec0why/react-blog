@@ -3,33 +3,28 @@ import { useDispatch } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { addPost } from '../../../redux/postsRedux';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const AddPostForm = () => {
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [publishedDate, setPublishedDate] = useState('');
-  const [shortDescription, setShortDescription] = useState('');
-  const [content, setContent] = useState('');
+const PostForm = ({ action, actionText, ...props }) => {
+  const [title, setTitle] = useState(props.title || '');
+  const [author, setAuthor] = useState(props.author || '');
+  const [publishedDate, setPublishedDate] = useState(props.publishedDate || '');
+  const [shortDescription, setShortDescription] = useState(
+    props.shortDescription || ''
+  );
+  const [content, setContent] = useState(props.content || '');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      addPost({
-        title: title,
-        author: author,
-        publishedDate: publishedDate,
-        shortDescription: shortDescription,
-        content: content,
-      })
-    );
-    setTitle('');
-    setAuthor('');
-    setPublishedDate('');
-    setShortDescription('');
-    setContent('');
+    action({ title, author, publishedDate, shortDescription, content });
+    setTitle(null);
+    setAuthor(null);
+    setPublishedDate(null);
+    setShortDescription(null);
+    setContent(null);
     navigate('/');
   };
 
@@ -90,10 +85,15 @@ const AddPostForm = () => {
       </Form.Group>
 
       <Button variant='primary' type='submit'>
-        Add Post
+        {props.actionText}
       </Button>
     </Form>
   );
 };
 
-export default AddPostForm;
+export default PostForm;
+
+PostForm.propTypes = {
+  action: PropTypes.object.isRequired,
+  actionText: PropTypes.string.isRequired,
+};
