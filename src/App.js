@@ -6,6 +6,7 @@ import Footer from './components/views/Footer/Footer';
 import AddPost from './components/views/AddPost/AddPost';
 import SinglePost from './components/features/SinglePost/SinglePost';
 import EditPostForm from './components/features/EditPostForm/EditPostForm';
+import About from './components/views/About/About';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route exact path='/post/:postId' element={<SinglePost />} />
           <Route path='/post/add' element={<AddPost />} />
           <Route exact path='/post/edit/:postId' element={<EditPostForm />} />
-          <Route path='/about' element={'<About />'} />
+          <Route path='/about' element={<About />} />
           <Route path='*' element={'<NotFound />'} />
         </Routes>
         <Footer />
