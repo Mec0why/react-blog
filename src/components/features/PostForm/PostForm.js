@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
-import { addPost } from '../../../redux/postsRedux';
-import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const PostForm = ({ action, actionText, ...props }) => {
@@ -14,18 +11,14 @@ const PostForm = ({ action, actionText, ...props }) => {
   );
   const [content, setContent] = useState(props.content || '');
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const handleSubmit = (e) => {
     e.preventDefault();
     action({ title, author, publishedDate, shortDescription, content });
-    setTitle(null);
-    setAuthor(null);
-    setPublishedDate(null);
-    setShortDescription(null);
-    setContent(null);
-    navigate('/');
+    setTitle('');
+    setAuthor('');
+    setPublishedDate('');
+    setShortDescription('');
+    setContent('');
   };
 
   return (
@@ -85,7 +78,7 @@ const PostForm = ({ action, actionText, ...props }) => {
       </Form.Group>
 
       <Button variant='primary' type='submit'>
-        {props.actionText}
+        {actionText}
       </Button>
     </Form>
   );
@@ -94,6 +87,6 @@ const PostForm = ({ action, actionText, ...props }) => {
 export default PostForm;
 
 PostForm.propTypes = {
-  action: PropTypes.object.isRequired,
+  action: PropTypes.func.isRequired,
   actionText: PropTypes.string.isRequired,
 };
