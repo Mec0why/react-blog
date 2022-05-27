@@ -7,12 +7,12 @@ const AddPostForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const AddPost = (post) => {
+  const handleSubmit = (post) => {
     dispatch(addPost({ ...post }));
     navigate('/');
   };
 
-  return <PostForm action={AddPost} actionText={'Add Post'} />;
+  return <PostForm action={handleSubmit} actionText={'Add Post'} />;
 };
 
 export default AddPostForm;

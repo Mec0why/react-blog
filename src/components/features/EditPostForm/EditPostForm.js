@@ -12,13 +12,13 @@ const EditPostForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const EditPost = (post) => {
+  const handleSubmit = (post) => {
     dispatch(editPost({ ...post, id: postId }));
     navigate('/');
   };
 
   if (!postData) return <Navigate to='/' />;
-  return <PostForm action={EditPost} actionText={'Edit Post'} {...postData} />;
+  return <PostForm action={handleSubmit} actionText={'Edit Post'} {...postData} />;
 };
 
 export default EditPostForm;
