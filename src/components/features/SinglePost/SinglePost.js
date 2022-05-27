@@ -37,7 +37,10 @@ const SinglePost = () => {
           </Col>
         </Row>
         <Row className='mt-4 justify-content-center'>
-          <Col className='col-md-8 align-self-center'>{postData.content}</Col>
+          <Col
+            className='col-md-8 align-self-center'
+            dangerouslySetInnerHTML={{ __html: postData.content }}
+          ></Col>
         </Row>
       </Container>
     );
