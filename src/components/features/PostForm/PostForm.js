@@ -1,3 +1,4 @@
+import styles from './PostForm.module.scss';
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import ReactQuill from 'react-quill';
@@ -70,6 +71,7 @@ const PostForm = ({ action, actionText, ...props }) => {
       <Form.Group className='mb-4' controlId='formPostContent'>
         <Form.Label>Main Content</Form.Label>
         <ReactQuill
+          className={styles.quill}
           theme='snow'
           value={content}
           onChange={setContent}
