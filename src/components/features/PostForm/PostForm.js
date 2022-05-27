@@ -76,6 +76,7 @@ const PostForm = ({ action, actionText, ...props }) => {
           value={content}
           onChange={setContent}
           placeholder='Enter Short Description'
+          preserveWhitespace={true}
         />
       </Form.Group>
 
