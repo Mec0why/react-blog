@@ -56,7 +56,7 @@ const PostForm = ({ action, actionText, ...props }) => {
           selected={publishedDate}
           onChange={(date) => setPublishedDate(date)}
           placeholder='Enter Publish Date'
-          dateFormat='yyyy-MM-dd'
+          dateFormat='dd-MM-yyyy'
         />
       </Form.Group>
 
