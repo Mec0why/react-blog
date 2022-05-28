@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import 'react-quill/dist/quill.snow.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { useForm } from 'react-hook-form';
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || '');
@@ -18,6 +19,12 @@ const PostForm = ({ action, actionText, ...props }) => {
   );
   const [content, setContent] = useState(props.content || '');
 
+  const {
+    register,
+    handleSubmit: validate,
+    formState: { errors },
+  } = useForm();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     action({ title, author, publishedDate, shortDescription, content });
@@ -29,15 +36,21 @@ const PostForm = ({ action, actionText, ...props }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className='col-md-8 mx-auto my-4'>
+    <Form onSubmit={validate(handleSubmit)} className='col-md-8 mx-auto my-4'>
       <Form.Group className='mb-4 col-md-6' controlId='formPostTitle'>
         <Form.Label>Title</Form.Label>
         <Form.Control
+          {...register('title', { required: true })}
           type='text'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder='Enter Title'
         />
+        {errors.title && (
+          <small className='d-block form-text text-danger mt-2'>
+            This field is required
+          </small>
+        )}
       </Form.Group>
 
       <Form.Group className='mb-4 col-md-6' controlId='formPostAuthor'>
