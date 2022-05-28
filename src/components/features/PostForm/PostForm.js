@@ -18,6 +18,8 @@ const PostForm = ({ action, actionText, ...props }) => {
     props.shortDescription || ''
   );
   const [content, setContent] = useState(props.content || '');
+  const [dateError, setDateError] = useState(false);
+  const [contentError, setContentError] = useState(false);
 
   const {
     register,
@@ -25,14 +27,17 @@ const PostForm = ({ action, actionText, ...props }) => {
     formState: { errors },
   } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    action({ title, author, publishedDate, shortDescription, content });
-    setTitle('');
-    setAuthor('');
-    setPublishedDate('');
-    setShortDescription('');
-    setContent('');
+  const handleSubmit = () => {
+    setContentError(!content);
+    setDateError(!publishedDate);
+    if (content && publishedDate) {
+      action({ title, author, publishedDate, shortDescription, content });
+      setTitle('');
+      setAuthor('');
+      setPublishedDate('');
+      setShortDescription('');
+      setContent('');
+    }
   };
 
   return (
@@ -77,6 +82,11 @@ const PostForm = ({ action, actionText, ...props }) => {
           placeholder='Enter Publish Date'
           dateFormat='dd-MM-yyyy'
         />
+        {dateError && (
+          <small className='d-block form-text text-danger mt-2'>
+            Date can't be empty
+          </small>
+        )}
       </Form.Group>
 
       <Form.Group className='mb-4' controlId='formPostShortDescription'>
@@ -107,6 +117,11 @@ const PostForm = ({ action, actionText, ...props }) => {
           placeholder='Enter Short Description'
           preserveWhitespace={true}
         />
+        {contentError && (
+          <small className='d-block form-text text-danger mt-2'>
+            Content can't be empty
+          </small>
+        )}
       </Form.Group>
 
       <Button variant='primary' type='submit'>
