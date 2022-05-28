@@ -40,7 +40,7 @@ const PostForm = ({ action, actionText, ...props }) => {
       <Form.Group className='mb-4 col-md-6' controlId='formPostTitle'>
         <Form.Label>Title</Form.Label>
         <Form.Control
-          {...register('title', { required: true })}
+          {...register('title', { required: true, minLength: 4 })}
           type='text'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -48,7 +48,7 @@ const PostForm = ({ action, actionText, ...props }) => {
         />
         {errors.title && (
           <small className='d-block form-text text-danger mt-2'>
-            This field is required
+            This field is required. Must be longer than 3 characters.
           </small>
         )}
       </Form.Group>
@@ -56,11 +56,17 @@ const PostForm = ({ action, actionText, ...props }) => {
       <Form.Group className='mb-4 col-md-6' controlId='formPostAuthor'>
         <Form.Label>Author</Form.Label>
         <Form.Control
+          {...register('author', { required: true, minLength: 4 })}
           type='text'
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
           placeholder='Enter Author'
         />
+        {errors.author && (
+          <small className='d-block form-text text-danger mt-2'>
+            This field is required. Must be longer than 3 characters.
+          </small>
+        )}
       </Form.Group>
 
       <Form.Group className='mb-4 col-md-6' controlId='formPostDate'>
@@ -76,6 +82,7 @@ const PostForm = ({ action, actionText, ...props }) => {
       <Form.Group className='mb-4' controlId='formPostShortDescription'>
         <Form.Label>Short Description</Form.Label>
         <Form.Control
+          {...register('shortDescription', { required: true, minLength: 21 })}
           as='textarea'
           type='text'
           value={shortDescription}
@@ -83,6 +90,11 @@ const PostForm = ({ action, actionText, ...props }) => {
           rows='3'
           placeholder='Enter Short Description'
         />
+        {errors.shortDescription && (
+          <small className='d-block form-text text-danger mt-2'>
+            This field is required. Must be longer than 20 characters.
+          </small>
+        )}
       </Form.Group>
 
       <Form.Group className='mb-4' controlId='formPostContent'>
