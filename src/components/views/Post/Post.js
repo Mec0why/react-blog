@@ -22,7 +22,7 @@ const Post = (props) => {
               {props.shortDescription}
             </span>
           </Card.Text>
-          <Link to={`post/${props.id}`}>
+          <Link to={`/post/${props.id}`}>
             <Button variant='primary'>Read more</Button>
           </Link>
         </Card.Body>
