@@ -7,6 +7,8 @@ import 'react-quill/dist/quill.snow.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useForm } from 'react-hook-form';
+import { getAllCategories } from '../../../redux/categoriesRedux';
+import { useSelector } from 'react-redux';
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || '');
@@ -18,8 +20,10 @@ const PostForm = ({ action, actionText, ...props }) => {
     props.shortDescription || ''
   );
   const [content, setContent] = useState(props.content || '');
+  const [category, setCategory] = useState(props.category || '');
   const [dateError, setDateError] = useState(false);
   const [contentError, setContentError] = useState(false);
+  const categories = useSelector((state) => getAllCategories(state));
 
   const {
     register,
@@ -31,7 +35,14 @@ const PostForm = ({ action, actionText, ...props }) => {
     setContentError(!content);
     setDateError(!publishedDate);
     if (content && publishedDate) {
-      action({ title, author, publishedDate, shortDescription, content });
+      action({
+        title,
+        author,
+        publishedDate,
+        shortDescription,
+        content,
+        category,
+      });
       setTitle('');
       setAuthor('');
       setPublishedDate('');
@@ -72,6 +83,20 @@ const PostForm = ({ action, actionText, ...props }) => {
             This field is required. Must be longer than 3 characters.
           </small>
         )}
+      </Form.Group>
+
+      <Form.Group className='mb-4 col-md-6' controlId='formPostCategory'>
+        <Form.Label>Select Category...</Form.Label>
+        <Form.Select
+          selected={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          {categories.map((category) => (
+            <option key={category} id={category}>
+              {category}
+            </option>
+          ))}
+        </Form.Select>
       </Form.Group>
 
       <Form.Group className='mb-4 col-md-6' controlId='formPostDate'>
