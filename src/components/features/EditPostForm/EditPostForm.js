@@ -9,7 +9,7 @@ const EditPostForm = () => {
   const { postId } = useParams();
   const postData = useSelector((state) => getPostById(state, postId));
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
   const navigate = useNavigate();
 
   const handleSubmit = (post) => {

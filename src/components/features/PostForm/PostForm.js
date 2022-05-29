@@ -88,11 +88,12 @@ const PostForm = ({ action, actionText, ...props }) => {
       <Form.Group className='mb-4 col-md-6' controlId='formPostCategory'>
         <Form.Label>Select Category...</Form.Label>
         <Form.Select
+          value={category}
           selected={category}
           onChange={(e) => setCategory(e.target.value)}
         >
           {categories.map((category) => (
-            <option key={category} id={category}>
+            <option key={category} value={category}>
               {category}
             </option>
           ))}
@@ -135,7 +136,6 @@ const PostForm = ({ action, actionText, ...props }) => {
       <Form.Group className='mb-4' controlId='formPostContent'>
         <Form.Label>Main Content</Form.Label>
         <ReactQuill
-          className={styles.quill}
           theme='snow'
           value={content}
           onChange={setContent}
